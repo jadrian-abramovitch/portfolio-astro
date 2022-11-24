@@ -6,36 +6,30 @@ import Card from "../components/Card.astro";
 <Layout title="Jadrian's Portfolio">
   <main class="flex flex-col justify-center content-center">
     <div class="flex-0">
-      <h1>Hi I'm <span class="text-gradient">Jadrian</span></h1>
-      <p class="instructions">
-        I'm a <code>fullstack dev</code> who loves working with teams to deliver
-        great software
-      </p>
+      <header class="m-4 flex items-center">
+        <div class="flex-0 text-5xl text-slate-500"><a href="./">←</a></div>
+        <h1><span class="text-gradient">Contact</span></h1>
+      </header>
       <ul role="list" class="link-card-grid">
         <Card
-          href="./about"
-          title="About Me"
-          body="Learn about me and my quest to be the best"
+          href="https://www.linkedin.com/in/jadrian-abramovitch-62bba5180"
+          title="LinkedIn"
+          body="Come say hello on LinkedIn"
         />
         <Card
-          href="./projects"
-          title="Projects"
-          body="Learn about the what I've been up to."
+          href="mailto:jmabramo@uwaterloo.ca"
+          title="Email"
+          body="For those who are too shy for (or don't enjoy) LinkedIn"
         />
         <Card
-          href="./blog"
-          title="Blog"
-          body="Here I write some thoughts about my experience as a dev"
+          href="https://github.com/jadrian-abramovitch/"
+          title="GitHub"
+          body="Look at some code I wrote"
         />
         <Card
-          href="./games"
-          title="Games"
-          body="Come get to know me with some fun games!"
-        />
-        <Card
-          href="./contact"
-          title="Contact"
-          body="Say hi on LinkedIn! Email works as well too, but thats less fun"
+          href="./smoke-signal"
+          title="Smoke Signals"
+          body="Tried and true, just make sure to check the weather first"
         />
       </ul>
     </div>

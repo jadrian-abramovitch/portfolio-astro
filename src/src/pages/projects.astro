@@ -9,13 +9,15 @@ import Card from '../components/Card.astro';
             <div class="flex-0 text-5xl text-slate-500"><a href="./">←</a></div>
             <h1 class="flex-0"><span class="text-gradient text-5xl m-2 font-extrabold">Projects</span></h1>
         </header>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-		</ul>
+		<div class="p-4">
+			<ul role="list" class="link-card-grid">
+				<Card
+					href="https://docs.astro.build/"
+					title="Documentation"
+					body="Learn how Astro works and explore the official API docs."
+				/>
+			</ul>
+		</div>
 	</main>
 </Layout>
 
