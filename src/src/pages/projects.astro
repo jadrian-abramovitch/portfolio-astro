@@ -1,32 +1,41 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 ---
 
 <Layout title="Projects">
-	<main>
-        <header class="m-4 flex items-center">
-            <div class="flex-0 text-5xl text-slate-500"><a href="./">←</a></div>
-            <h1 class="flex-0"><span class="text-gradient text-5xl m-2 font-extrabold">Projects</span></h1>
-        </header>
-		<div class="p-4">
-			<ul role="list" class="link-card-grid">
-				<Card
-					href="https://docs.astro.build/"
-					title="Documentation"
-					body="Learn how Astro works and explore the official API docs."
-				/>
-			</ul>
-		</div>
-	</main>
+  <main>
+    <header class="m-4 flex items-center">
+      <div class="flex-0 text-5xl text-slate-500"><a href="./">←</a></div>
+      <h1 class="flex-0">
+        <span class="text-gradient text-5xl m-2 font-extrabold">Projects</span>
+      </h1>
+    </header>
+    <ul role="list" class="link-card-grid">
+      <div class="p-4">
+        <Card
+          href="https://github.com/jadrian-abramovitch/FindMeATeam"
+          title="Find Me A Team!"
+          body="Find Me A Team allows users to connect with other players from their favorite games. This site is able to facilitate these human connections without having all features 100% complete. Currently the only game supported is League of Legends, but will be expanded to other games such as CS:GO, Overwatch, Dota etc."
+        />
+      </div>
+      <div class="p-4">
+        <Card
+          href="https://github.com/jadrian-abramovitch/NHL-Scraper"
+          title="NHL roster building investigation"
+          body="A web scraper for NHL.com to analyze the relationship between talent distribution and team success."
+        />
+      </div>
+    </ul>
+  </main>
 </Layout>
 
 <style>
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
 </style>
