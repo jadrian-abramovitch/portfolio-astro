@@ -1,21 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const { frontmatter } = Astro.props;
 ---
 
-<Layout title="Jadrian's Portfolio">
-  <main class="flex flex-col justify-center content-center">
-    <div class="flex-0">
+<Layout title="Blog">
+  <main class="flex justify-center content-center">
+    <div class="flex-1">
       <header class="m-4 flex items-center">
         <div class="flex-0 text-5xl text-slate-500">
-          <a href="./contact">←</a>
+          <a href="../blog">←</a>
         </div>
-        <h1><span class="text-gradient">Smoke Signals</span></h1>
+        <h1><span class="text-gradient">{frontmatter.title}</span></h1>
       </header>
-      <p class="instructions">
-        So I have a confession. I've never actually used smoke signals before.
-        If you could teach me though that would be great, I could use some help
-        with a few fire based promises I made.
-      </p>
+      <div class="instructions">
+        <slot />
+      </div>
     </div>
   </main>
 </Layout>
@@ -24,8 +23,8 @@ import Layout from "../layouts/Layout.astro";
   main {
     margin: auto;
     padding: 1.5rem;
-    max-width: 60ch;
     height: 100vh;
+    max-width: 100ch;
   }
   h1 {
     font-size: 3rem;

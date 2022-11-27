@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+const posts = await Astro.glob("./posts/*.md");
+---
+
+<Layout title="Blog Posts">
+  <main>
+    <header class="m-4 flex items-center">
+      <div class="flex-0 text-5xl text-slate-500"><a href="./">←</a></div>
+      <h1 class="flex-0">
+        <span class="text-gradient text-5xl m-2 font-extrabold">Blog Posts</span
+        >
+      </h1>
+    </header>
+    {
+      posts.map((post) => (
+        <ul role="list" class="link-card-grid">
+          <div class="p-4">
+            <Card
+              href={post.url ? post.url : "./blog"}
+              title={post.frontmatter.title}
+              body={post.frontmatter.subTitle}
+            />
+          </div>
+        </ul>
+      ))
+    }
+  </main>
+</Layout>
+
+<style>
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+</style>
