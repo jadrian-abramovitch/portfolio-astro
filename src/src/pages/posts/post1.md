@@ -2,15 +2,39 @@
 layout: ../../layouts/postLayout.astro
 title: "My First Year as a Dev"
 subTitle: "As I'm celebrating my 1 year anniversary of my first post college job, join me for some reflections and lessons."
+dateWritten: "September 15th, 2022"
 ---
 
-This is my in-progress blog post. Here is a whole lotta text. Like sooo much text omg. lsakjfd saldfkja dflajkdfb 120 s.sd dsf dsfa sdf
+September 8th 2022 marks one year since I started my first fulltime (i.e. not co-op) dev position! I thought it would be a good idea to take some time to reflect on my experiences and learnings. Before getting into it, I just wanted to take a moment to thank some people who have helped me grow in this first year. Ian thanks for being a great on-boarding buddy, you made the whole process a lot less scary. Thanks to my teammates Leonardo, Cameron, Sascha, and Ivan for being super helpful and motivating. We have very open teams that encourage each other to seek assistance and feedback, which has made developing software, which can be a painstaking and arduous process, a fun and rewarding experience. Thanks to Lorissa and George, my team leads over this time for their guidance in this early part of my career.
 
-No page will be built for this post.
+I'm probably forgetting a lot of people (sorry!) because I've gotten a lot of help from a lot of people. We have a strong culture at Bonfire of working together and helping each other out. This leads me to my first learned lesson:
 
-To build and publish this post:
+```
+Developing Software is a Human Endeavor
+```
 
-- update the frontmatter to `draft: false` or
-- remove the `draft` property entirely.
+This means that while we get paid to translate ideas into code, we can't deliver high quality software without being able to communicate and coordinate. Even interactions with the computer directly are translated through layers of human abstraction. We (thankfully) don't write in assembly, so we are interacting with something a human designed, even if its a series of abstractions of the underlying computer architecture.
 
-But, this page _will_ be returned by any matching `Astro.glob()` request.
+Seeing software as a human-first Endeavor means treating everyone with respect (in a way that the other person will perceive it) so that other developers feel emotionally safe enough to speak up in the group meeting. It means showing the developer who broke the application grace as you work through what happened alongside them such that you can understand and correct. Being the best software developer means being the best teammate, and any illusions to the contrary probably belong is a sitcom.
+
+```
+Software Development is a Craft
+```
+
+Software development has a lot of theory behind it, but all of the theory in the world doesn't matter if you can't apply it. Great you know how to traverse a binary search tree, but do you know when to? Do you know why you want to use this solution as opposed to another? Did you even consider this solution to the given problem?
+
+Software development is about doing. The only way to write a good application is to write many bad ones. There is no substitute for the experience of actually doing it. Too often we get caught up consuming content (books, tutorials etc.) about how to program, when we should be primarily focused on writing lots of code. The best engineers I work with have written a lot of code, and probably threw away a lot what they have written. In the same way that a basketball player throws thousands of practice free throws when it doesn't matter so that they may hit the couple important ones, we too must throw out most of the code we write, so that when we have to deliver, we can write better code.
+
+```
+Learn a new Codebase by Observing how it Changes
+```
+
+Working with large code bases is difficult. There's a lot of code, lots of files, and lots of design patterns. Its hard to see how it all works together first. By observing the code changes to the codebase, we can skip learning the lower priority parts of the app that are not likely to change much. What is more important to know? How your backend parses HTTP requests to strip out the properties? Or how to add a new table to the database and ORM? You should learn about the ORM and adding tables to the database, since this is more likely to be immediately relevant, and the HTTP parsing code can probably be thought of as a black box that just does what you need it to. I'm not advocating to never learn about this, but it is a lower priority in a world where there is always something new to learn.
+
+So with these learnings, I will try to do these 3 things in the next year:
+
+1. Value the relationships of my teammates highly. Zoom call with each of them at least once a week 1:1.
+2. Write as much code as possible. Focus on small projects, and make sure to move on to the next quickly.
+3. Read through every PR put up to any of the codebases that I work on.
+
+I've definitely learned a lot more that this, but these were 3 of the most important lessons I learned from my first year as a fulltime developer.

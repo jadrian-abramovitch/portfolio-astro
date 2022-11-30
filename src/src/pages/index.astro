@@ -4,45 +4,65 @@ import Card from "../components/Card.astro";
 ---
 
 <Layout title="Jadrian's Portfolio">
-  <main class="flex flex-col justify-center content-center">
-    <h1>Hi I'm <span class="text-gradient">Jadrian</span></h1>
-    <div class="temp">
-      <p class="instructions">
-        I'm a <code>fullstack dev</code> who loves working with teams to deliver
-        great software
-      </p>
+  <main>
+    <div class="flex-container-1"></div>
+    <div class="flex-container-4 m-1rem">
+      <h1>Hi I'm <span class="text-gradient">Jadrian</span></h1>
+      <div class="instructions-container">
+        <p class="instructions">
+          I'm a <code>fullstack dev</code> who loves working with teams to deliver
+          great software
+        </p>
+      </div>
+      <ul role="list" class="link-card-grid mt-4 mb-4">
+        <Card
+          href="./about"
+          title="About Me"
+          body="Learn about me and my quest to be the best"
+        />
+        <Card
+          href="./projects"
+          title="Projects"
+          body="Learn about the what I've been up to."
+        />
+        <Card
+          href="./blog"
+          title="Blog"
+          body="Here I write some thoughts about my experience as a dev"
+        />
+        <Card
+          href="./contact"
+          title="Contact"
+          body="Say hi on LinkedIn! Email works as well too, but thats less fun"
+        />
+      </ul>
     </div>
-    <ul role="list" class="link-card-grid mt-4 mb-4">
-      <Card
-        href="./about"
-        title="About Me"
-        body="Learn about me and my quest to be the best"
-      />
-      <Card
-        href="./projects"
-        title="Projects"
-        body="Learn about the what I've been up to."
-      />
-      <Card
-        href="./blog"
-        title="Blog"
-        body="Here I write some thoughts about my experience as a dev"
-      />
-      <Card
-        href="./contact"
-        title="Contact"
-        body="Say hi on LinkedIn! Email works as well too, but thats less fun"
-      />
-    </ul>
+    <div class="flex-container-1"></div>
   </main>
 </Layout>
 
 <style>
+  .m-1rem {
+    margin: 1rem;
+  }
+  body,
+  html {
+    margin: 0px;
+    padding: 0px;
+  }
+  .flex-container-1 {
+    flex: 1 1 0;
+  }
+  .flex-container-4 {
+    flex: 4 4 0;
+  }
   main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
+    /* max-width: 60ch; */
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
   h1 {
     font-size: 3rem;
@@ -81,9 +101,10 @@ import Card from "../components/Card.astro";
     gap: 1rem;
     padding: 0;
   }
-  .temp {
+  .instructions-container {
     background-position: 0;
-    list-style: none;
+    height: max-content;
+    /* list-style: none; */
     display: flex;
     padding: 0.15rem;
     background-color: white;

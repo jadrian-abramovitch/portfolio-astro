@@ -4,27 +4,39 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title="Blog">
-  <main class="flex justify-center content-center">
-    <div class="flex-1">
+  <main>
+    <div class="container">
       <header class="m-4 flex items-center">
         <div class="flex-0 text-5xl text-slate-500">
           <a href="../blog">←</a>
         </div>
         <h1><span class="text-gradient">{frontmatter.title}</span></h1>
       </header>
-      <div class="instructions">
-        <slot />
-      </div>
+      <body>
+        <div class="instructions">
+          <slot />
+        </div>
+      </body>
     </div>
   </main>
 </Layout>
 
 <style>
+  .header {
+    margin: 1rem;
+    flex: ;
+  }
   main {
     margin: auto;
     padding: 1.5rem;
     height: 100vh;
     max-width: 100ch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    flex: 1;
   }
   h1 {
     font-size: 3rem;
