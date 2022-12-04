@@ -5,8 +5,11 @@ import Card from "../components/Card.astro";
 
 <Layout title="Projects">
   <main>
-    <header class="m-4 flex items-center">
-      <div class="flex-0 text-5xl text-slate-500"><a href="./">←</a></div>
+    <header class="flex items-center">
+      <div class="flex-0 text-5xl text-gradient arrow-container">
+        <a href="./"><div class="arrow-draw"></div></a>
+        <!-- <a class="arrow" href="./">←</a> -->
+      </div>
       <h1 class="flex-0">
         <span class="text-gradient text-5xl m-2 font-extrabold">Projects</span>
       </h1>
@@ -38,6 +41,40 @@ import Card from "../components/Card.astro";
 </Layout>
 
 <style>
+  .m-2 {
+    margin: 1rem;
+  }
+  .arrow-draw {
+    border-top: 12px solid transparent;
+    border-right: 30px solid black;
+    border-bottom: 12px solid transparent;
+  }
+  .arrow-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    /* justify-content: center; */
+  }
+  .arrow {
+    border: 2px solid black;
+    font-size: 4rem;
+    margin: 0px;
+    /* margin: 3rem 0rem; */
+  }
+  .text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  .flex-0 {
+    flex: 0;
+  }
+  header {
+    margin: 1rem;
+    margin-left: 0rem;
+    display: flex;
+    align-items: center;
+  }
   .text-gradient {
     background-image: var(--accent-gradient);
     -webkit-background-clip: text;

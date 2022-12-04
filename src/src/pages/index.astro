@@ -6,7 +6,7 @@ import Card from "../components/Card.astro";
 <Layout title="Jadrian's Portfolio">
   <main>
     <div class="flex-container-1"></div>
-    <div class="flex-container-4 m-1rem">
+    <div class="flex-container-4 m-1rem flex-center">
       <h1>Hi I'm <span class="text-gradient">Jadrian</span></h1>
       <div class="instructions-container">
         <p class="instructions">
@@ -14,7 +14,7 @@ import Card from "../components/Card.astro";
           great software
         </p>
       </div>
-      <ul role="list" class="link-card-grid mt-4 mb-4">
+      <ul role="list" class="link-card-grid">
         <Card
           href="./about"
           title="About Me"
@@ -42,6 +42,11 @@ import Card from "../components/Card.astro";
 </Layout>
 
 <style>
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
   .m-1rem {
     margin: 1rem;
   }
@@ -57,7 +62,6 @@ import Card from "../components/Card.astro";
     flex: 4 4 0;
   }
   main {
-    /* max-width: 60ch; */
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -99,7 +103,9 @@ import Card from "../components/Card.astro";
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
     gap: 1rem;
-    padding: 0;
+    padding: 0px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
   .instructions-container {
     background-position: 0;
