@@ -1,39 +1,37 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 ---
 
 <Layout title="Jadrian's Portfolio">
-  <main class="flex flex-col justify-center content-center">
-    <div class="flex-0">
-      <header class="m-4 flex items-center">
-        <div class="flex-0 text-5xl text-slate-500"><a href="./">←</a></div>
-        <h1 class="flex-0">
-          <span class="text-gradient text-5xl m-2 font-extrabold">Contact</span>
-        </h1>
-      </header>
-      <ul role="list" class="link-card-grid">
-        <Card
-          href="https://www.linkedin.com/in/jadrian-abramovitch-62bba5180"
-          title="LinkedIn"
-          body="Come say hello on LinkedIn"
-        />
-        <Card
-          href="mailto:jmabramo@uwaterloo.ca"
-          title="Email"
-          body="For those who are too shy for (or don't enjoy) LinkedIn"
-        />
-        <Card
-          href="https://github.com/jadrian-abramovitch/"
-          title="GitHub"
-          body="Look at some code I wrote"
-        />
-        <Card
-          href="./smoke-signal"
-          title="Smoke Signals"
-          body="Tried and true, just make sure to check the weather first"
-        />
-      </ul>
+  <main>
+    <div class="container">
+      <SectionHeader title="Contact" />
+      <div class="flex-0">
+        <ul role="list" class="link-card-grid">
+          <Card
+            href="https://www.linkedin.com/in/jadrian-abramovitch-62bba5180"
+            title="LinkedIn"
+            body="Come say hello on LinkedIn"
+          />
+          <Card
+            href="mailto:jmabramo@uwaterloo.ca"
+            title="Email"
+            body="For those who are too shy for (or don't enjoy) LinkedIn"
+          />
+          <Card
+            href="https://github.com/jadrian-abramovitch/"
+            title="GitHub"
+            body="Look at some code I wrote"
+          />
+          <Card
+            href="./smoke-signal"
+            title="Smoke Signals"
+            body="Tried and true, just make sure to check the weather first"
+          />
+        </ul>
+      </div>
     </div>
   </main>
 </Layout>
@@ -43,7 +41,11 @@ import Card from "../components/Card.astro";
     margin: auto;
     padding: 1.5rem;
     max-width: 60ch;
-    height: 100vh;
+    height: 93vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   h1 {
     font-size: 3rem;

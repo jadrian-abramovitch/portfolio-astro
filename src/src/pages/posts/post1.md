@@ -4,7 +4,6 @@ title: "My First Year as a Dev"
 subTitle: "As I'm celebrating my 1 year anniversary of my first post college job, join me for some reflections and lessons."
 dateWritten: "September 15th, 2022"
 ---
-
 September 8th 2022 marks one year since I started my first fulltime (i.e. not co-op) dev position! I thought it would be a good idea to take some time to reflect on my experiences and learnings. Before getting into it, I just wanted to take a moment to thank some people who have helped me grow in this first year. Ian thanks for being a great on-boarding buddy, you made the whole process a lot less scary. Thanks to my teammates Leonardo, Cameron, Sascha, and Ivan for being super helpful and motivating. We have very open teams that encourage each other to seek assistance and feedback, which has made developing software, which can be a painstaking and arduous process, a fun and rewarding experience. Thanks to Lorissa and George, my team leads over this time for their guidance in this early part of my career.
 
 I'm probably forgetting a lot of people (sorry!) because I've gotten a lot of help from a lot of people. We have a strong culture at Bonfire of working together and helping each other out. This leads me to my first learned lesson:

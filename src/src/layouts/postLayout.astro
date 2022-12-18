@@ -1,17 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 const { frontmatter } = Astro.props;
 ---
 
 <Layout title="Blog">
   <main>
     <div class="container">
-      <header class="m-4 flex items-center">
-        <div class="flex-0 text-5xl text-slate-500">
-          <a href="../blog">←</a>
-        </div>
-        <h1><span class="text-gradient">{frontmatter.title}</span></h1>
-      </header>
+      <SectionHeader title={frontmatter.title} href={"../blog"} />
       <body>
         <div class="instructions">
           <slot />
@@ -22,46 +18,19 @@ const { frontmatter } = Astro.props;
 </Layout>
 
 <style>
-  .header {
-    margin: 1rem;
-    flex: ;
-  }
   main {
     margin: auto;
-    padding: 1.5rem;
-    height: 100vh;
-    max-width: 100ch;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 90vw;
   }
   .container {
     flex: 1;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
   }
   .instructions {
     line-height: 1.6;
     margin: 1rem 0;
     border: 1px solid rgba(var(--accent), 25%);
     background-color: white;
-    padding: 1rem;
+    padding: 0rem 1rem;
     border-radius: 0.4rem;
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
   }
 </style>

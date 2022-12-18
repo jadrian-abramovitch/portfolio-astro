@@ -5,7 +5,7 @@ import Card from "../components/Card.astro";
 
 <Layout title="Jadrian's Portfolio">
   <main>
-    <div class="flex-container-1"></div>
+    <!-- <div class="flex-container-1"></div> -->
     <div class="flex-container-4 m-1rem flex-center">
       <h1>Hi I'm <span class="text-gradient">Jadrian</span></h1>
       <div class="instructions-container">
@@ -37,7 +37,7 @@ import Card from "../components/Card.astro";
         />
       </ul>
     </div>
-    <div class="flex-container-1"></div>
+    <!-- <div class="flex-container-1"></div> -->
   </main>
 </Layout>
 
@@ -62,12 +62,22 @@ import Card from "../components/Card.astro";
     flex: 4 4 0;
   }
   main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  /* main {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
+  } */
   h1 {
     font-size: 3rem;
     font-weight: 800;
