@@ -7,7 +7,7 @@ const { frontmatter } = Astro.props;
 <Layout title="Blog">
   <main>
     <div class="container">
-      <SectionHeader title={frontmatter.title} href={"../blog"} />
+      <SectionHeader title={frontmatter.title} href={"/blog/"} />
       <body>
         <div class="instructions">
           <slot />
