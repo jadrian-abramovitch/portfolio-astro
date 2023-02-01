@@ -1,57 +1,51 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 ---
 
 <Layout title="Jadrian's Portfolio">
-  <main class="flex flex-col justify-center content-center">
-    <SectionHeader title="About" />
-    <div class="flex-0">
-      <p class="instructions resume-container">
-        <a class="resume" href="/Jadrian_s_Resume.pdf" download
-          >&dArr; Download Resume &dArr;</a
-        >
-      </p>
+  <main>
+    <div class="container">
+      <SectionHeader title="About" />
+      <div class="flex-0">
+        <ul role="list" class="link-card-grid">
+          <Card
+            href="/about-details"
+            title="About Me"
+            body="A little bit about who I am as a developer and team player"
+          />
+          <Card
+            href="/game/"
+            title="Get to Know Me Game"
+            body="For those who don't feel like reading"
+          />
+          <Card
+            href="/Jadrian_s_Resume.pdf"
+            title="Resume"
+            body="Guaranteed fun or your money back!"
+          />
+          <Card
+            href="/contact/"
+            title="Contact"
+            body="Feel free to reach out!"
+          />
+        </ul>
+      </div>
     </div>
-    <p class="instructions">
-      I'm a fullstack developer who is a self motivated team player. I enjoy
-      learning new tech, but acknowledge that these technologies are just tools
-      in a tool belt, a means to deliver great software products. I love writing
-      tests, reviewing code and testing to ensure my team is always delivering
-      great code. I have experience in many programming languages, which
-      facilitates my ability to adopt new technology quickly by seeing the
-      commonalities between them. I'm no security expert, but I know the basics
-      of keeping a website secure.
-    </p>
-    <p class="instructions">
-      I graduated from the University of Waterloo with a Bachelor of Applied
-      Science in Honours Nanotechnology Engineering. I chose this program
-      because I was interested in chemistry and wanted to apply my learnings to
-      solve problems and improve lives. However, the actual day to day work of
-      being in a lab was not enjoyable for me, so I branched out a bit during my
-      coop placements, and learned that I could build amazing things using
-      software from my own computer. Starting from about halfway through my
-      program, I switched my focus to software, taking as many software courses
-      as the school would let me. I have been self-directing my learning ever
-      since. I believe that this round about path has made me a better
-      professional developer to this day because it forced me to learn how to
-      learn.
-    </p>
   </main>
 </Layout>
 
 <style>
-  .resume-container {
-    text-align: center;
-  }
-  .resume {
-    text-decoration: none;
-    color: black;
-  }
   main {
     margin: auto;
     padding: 1.5rem;
     max-width: 60ch;
+    height: 93vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   h1 {
     font-size: 3rem;
@@ -72,6 +66,17 @@ import SectionHeader from "../components/SectionHeader.astro";
     background-color: white;
     padding: 1rem;
     border-radius: 0.4rem;
+  }
+  .instructions code {
+    font-size: 0.875em;
+    font-weight: bold;
+    background: rgba(var(--accent), 12%);
+    color: rgb(var(--accent));
+    border-radius: 4px;
+    padding: 0.3em 0.45em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent));
   }
   .link-card-grid {
     display: grid;

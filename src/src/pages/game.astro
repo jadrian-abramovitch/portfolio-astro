@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
+<Layout title="Jadrian's Portfolio">
+  <main>
+    <div class="container">
+      <SectionHeader title="2 Truths 1 Lie" href="/about/" />
+      <div class="flex-0">
+        <div class="instructions-container">
+          <p class="instructions">
+            I'll show you 3 statements, you guess which one is the <code
+              >LIE</code
+            >
+          </p>
+        </div>
+        <ul role="list" class="link-card-grid">
+          <button class="lie-card"></button>
+          <button class="lie-card"></button>
+          <button class="lie-card"></button>
+        </ul>
+        <button id="reset-button">Start Game!</button>
+      </div>
+      <script>
+        const gameData = {
+          truths: [
+            "I was born on a Friday the 13th (Spooky)",
+            "I played clarinet in high school band",
+            "I went to the University of Waterloo for NanoTechnology Engineering",
+            "I was a team leader at McDonald's in high school",
+            "I built my own PC",
+            "I think that windows 10 has a better UI than MacOS",
+            "I like Javascript",
+            "I almost got an internship with Apple, but was happy in hindsight to not have gotten the job",
+          ],
+          lies: [
+            "I played the UPS guy in my high school's production of Legally Blonde",
+            "I still use Windows 7 daily",
+            "Internet explorer is a great browser",
+            "I have been to Italy",
+          ],
+        };
+        const lies: string[] = gameData.lies;
+        const truths: string[] = gameData.truths;
+        const buttons = document.getElementsByClassName(
+          "lie-card"
+        ) as HTMLCollectionOf<HTMLButtonElement>;
+        let lieIndex = -1;
+        const resetBoard = () => {
+          const initialStatements = Array(3)
+            .fill(1)
+            .map((n, i) => i);
+          let shuffled = initialStatements
+            .map((value) => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value);
+          const cardData = shuffled.map((value, index) => {
+            if (value >= 2) {
+              lieIndex = index;
+              return getLie();
+            } else {
+              return getTruth();
+            }
+          });
+          for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.backgroundColor = "";
+            buttons[i].innerHTML = cardData[i];
+          }
+          if (lies.length === 0) {
+            const resetButton = document.getElementById(
+              "reset-button"
+            ) as HTMLButtonElement;
+            resetButton!.disabled = true;
+          }
+          const resetButton = document.getElementById(
+            "reset-button"
+          ) as HTMLButtonElement;
+          resetButton!.innerHTML = "Next Round!";
+        };
+        function setCardState(id: number, isCorrect: boolean) {
+          const newColor = isCorrect ? "#34eb40" : "#f04216";
+          buttons[id].style.backgroundColor = newColor;
+        }
+        const handleClick = (id: number) => () => {
+          if (lieIndex < 0) return;
+          if (id !== lieIndex) {
+            //incorrect
+            setCardState(id, false);
+          } else if (id === lieIndex) {
+            //correct
+            setCardState(id, true);
+          }
+        };
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].addEventListener("click", handleClick(i));
+        }
+        const resetButton = document.getElementById("reset-button");
+        resetButton?.addEventListener("click", resetBoard);
+
+        // Helper functions
+        function getRandomNumber(num: number) {
+          return Math.floor(Math.random() * num);
+        }
+        function getLie() {
+          return lies.splice(getRandomNumber(lies.length), 1)[0];
+        }
+        function getTruth() {
+          return truths.splice(getRandomNumber(truths.length), 1)[0];
+        }
+      </script>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+    height: 93vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .instructions {
+    line-height: 1.6;
+    margin: 1rem 0;
+    border: 1px solid rgba(var(--accent), 25%);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.4rem;
+  }
+  .instructions code {
+    font-size: 0.875em;
+    font-weight: bold;
+    background: rgba(var(--accent), 12%);
+    color: rgb(var(--accent));
+    border-radius: 4px;
+    padding: 0.3em 0.45em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+  .lie-card {
+    border: 4px solid black;
+    height: 200px;
+  }
+</style>
