@@ -12,17 +12,29 @@ import SectionHeader from "../components/SectionHeader.astro";
           <p class="instructions">
             I'll show you 3 statements, you guess which one is the <code
               >LIE</code
-            >
+            > Let me know how you did!
           </p>
         </div>
         <ul role="list" class="link-card-grid">
-          <button class="lie-card"></button>
-          <button class="lie-card"></button>
-          <button class="lie-card"></button>
+          <li>
+            <p class="instructions lie-card"></p>
+            <h2>Statement #1</h2>
+          </li>
+          <li>
+            <p class="instructions lie-card"></p>
+            <h2>Statement #2</h2>
+          </li>
+          <li>
+            <p class="instructions lie-card"></p>
+            <h2>Statement #3</h2>
+          </li>
         </ul>
-        <button id="reset-button">Start Game!</button>
+        <div class="center-box">
+          <button id="reset-button">Start Game!</button>
+        </div>
       </div>
       <script>
+        // initial data
         const gameData = {
           truths: [
             "I was born on a Friday the 13th (Spooky)",
@@ -41,11 +53,11 @@ import SectionHeader from "../components/SectionHeader.astro";
             "I have been to Italy",
           ],
         };
-        const lies: string[] = gameData.lies;
-        const truths: string[] = gameData.truths;
         const buttons = document.getElementsByClassName(
           "lie-card"
         ) as HTMLCollectionOf<HTMLButtonElement>;
+
+        // main game 'loop'
         let lieIndex = -1;
         const resetBoard = () => {
           const initialStatements = Array(3)
@@ -67,7 +79,7 @@ import SectionHeader from "../components/SectionHeader.astro";
             buttons[i].style.backgroundColor = "";
             buttons[i].innerHTML = cardData[i];
           }
-          if (lies.length === 0) {
+          if (gameData.lies.length === 0) {
             const resetButton = document.getElementById(
               "reset-button"
             ) as HTMLButtonElement;
@@ -78,10 +90,8 @@ import SectionHeader from "../components/SectionHeader.astro";
           ) as HTMLButtonElement;
           resetButton!.innerHTML = "Next Round!";
         };
-        function setCardState(id: number, isCorrect: boolean) {
-          const newColor = isCorrect ? "#34eb40" : "#f04216";
-          buttons[id].style.backgroundColor = newColor;
-        }
+
+        // Setup click listeners
         const handleClick = (id: number) => () => {
           if (lieIndex < 0) return;
           if (id !== lieIndex) {
@@ -99,14 +109,24 @@ import SectionHeader from "../components/SectionHeader.astro";
         resetButton?.addEventListener("click", resetBoard);
 
         // Helper functions
+        function setCardState(id: number, isCorrect: boolean) {
+          const newColor = isCorrect ? "#34eb40" : "#f04216";
+          buttons[id].style.backgroundColor = newColor;
+        }
         function getRandomNumber(num: number) {
           return Math.floor(Math.random() * num);
         }
         function getLie() {
-          return lies.splice(getRandomNumber(lies.length), 1)[0];
+          return gameData.lies.splice(
+            getRandomNumber(gameData.lies.length),
+            1
+          )[0];
         }
         function getTruth() {
-          return truths.splice(getRandomNumber(truths.length), 1)[0];
+          return gameData.truths.splice(
+            getRandomNumber(gameData.truths.length),
+            1
+          )[0];
         }
       </script>
     </div>
@@ -117,12 +137,39 @@ import SectionHeader from "../components/SectionHeader.astro";
   main {
     margin: auto;
     padding: 1.5rem;
-    max-width: 60ch;
+    max-width: 80ch;
     height: 93vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .instructions-container {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .center-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #reset-button {
+    border-radius: 0.4rem;
+    border: none;
+    padding: 0.5rem;
+    background-color: #035451;
+    color: white;
+    font-size: large;
+  }
+  #reset-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  h2 {
+    margin-top: 0rem;
+  }
+  .link-card-grid {
+    text-align: center;
   }
   .instructions {
     line-height: 1.6;
@@ -131,6 +178,7 @@ import SectionHeader from "../components/SectionHeader.astro";
     background-color: white;
     padding: 1rem;
     border-radius: 0.4rem;
+    margin-bottom: 0.25rem;
   }
   .instructions code {
     font-size: 0.875em;
@@ -145,12 +193,14 @@ import SectionHeader from "../components/SectionHeader.astro";
   }
   .link-card-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(24ch, 1fr));
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
     padding: 0;
+    list-style: none;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
   .lie-card {
-    border: 4px solid black;
-    height: 200px;
+    height: 250px;
   }
 </style>
