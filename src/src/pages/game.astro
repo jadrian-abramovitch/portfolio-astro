@@ -17,19 +17,24 @@ import SectionHeader from "../components/SectionHeader.astro";
         </div>
         <ul role="list" class="link-card-grid">
           <li>
-            <p class="instructions lie-card"></p>
-            <h2>Statement #1</h2>
+            <div class="vertical-container">
+              <p class="instructions lie-card">?</p>
+            </div>
+            <h2 class="card-title">Statement #1</h2>
           </li>
           <li>
-            <p class="instructions lie-card"></p>
-            <h2>Statement #2</h2>
+            <p class="instructions lie-card">?</p>
+            <h2 class="card-title">Statement #2</h2>
           </li>
           <li>
-            <p class="instructions lie-card"></p>
-            <h2>Statement #3</h2>
+            <p class="instructions lie-card">?</p>
+            <h2 class="card-title">Statement #3</h2>
           </li>
         </ul>
+	<div class="comment-box"></div>
         <div class="center-box">
+          <h2>Correct Guesses: <div class="counter">0</div> </h2>
+          <h2>Incorrect Guesses: <div class="counter">0</div> </h2>
           <button id="reset-button">Start Game!</button>
         </div>
       </div>
@@ -57,6 +62,7 @@ import SectionHeader from "../components/SectionHeader.astro";
           "lie-card"
         ) as HTMLCollectionOf<HTMLButtonElement>;
 
+        const cardTitles = document.getElementsByClassName("card-title") as HTMLCollectionOf<Element>;
         // main game 'loop'
         let lieIndex = -1;
         const resetBoard = () => {
@@ -78,6 +84,7 @@ import SectionHeader from "../components/SectionHeader.astro";
           for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.backgroundColor = "";
             buttons[i].innerHTML = cardData[i];
+            cardTitles[i].innerHTML = `Statement #${i + 1}`;
           }
           if (gameData.lies.length === 0) {
             const resetButton = document.getElementById(
@@ -110,8 +117,17 @@ import SectionHeader from "../components/SectionHeader.astro";
 
         // Helper functions
         function setCardState(id: number, isCorrect: boolean) {
-          const newColor = isCorrect ? "#34eb40" : "#f04216";
+          const newColor = isCorrect ? "#035428" : "#f04216";
           buttons[id].style.backgroundColor = newColor;
+          buttons[id].style.border = "2px solid black";
+          cardTitles[id].innerHTML = isCorrect ? "Correct!" : "Incorrect";
+          if (isCorrect) incrementCounter(0);
+          if (!isCorrect) incrementCounter(1);
+        }
+        function incrementCounter(counterId: number) {
+          const counter = document.getElementsByClassName("counter").item(counterId) as HTMLElement;
+          const currentValue = Number(counter.innerHTML);
+          counter.innerHTML = String(currentValue + 1);
         }
         function getRandomNumber(num: number) {
           return Math.floor(Math.random() * num);
@@ -134,6 +150,17 @@ import SectionHeader from "../components/SectionHeader.astro";
 </Layout>
 
 <style>
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  vertical-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
   main {
     margin: auto;
     padding: 1.5rem;
