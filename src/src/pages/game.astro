@@ -17,25 +17,28 @@ import SectionHeader from "../components/SectionHeader.astro";
         </div>
         <ul role="list" class="link-card-grid">
           <li>
-            <div class="vertical-container">
-              <p class="instructions lie-card">?</p>
-            </div>
+            <p class="instructions lie-card">
+              <img src="/question-mark.png" alt="Question Mark" width="64" height="64">
+            </p>
             <h2 class="card-title">Statement #1</h2>
           </li>
           <li>
-            <p class="instructions lie-card">?</p>
+            <p class="instructions lie-card">
+              <img src="/question-mark.png" alt="Question Mark" width="64" height="64">
+            </p>
             <h2 class="card-title">Statement #2</h2>
           </li>
           <li>
-            <p class="instructions lie-card">?</p>
+            <p class="instructions lie-card">
+              <img src="/question-mark.png" alt="Question Mark" width="64" height="64">
+            </p>
             <h2 class="card-title">Statement #3</h2>
           </li>
         </ul>
 	<div class="comment-box"></div>
         <div class="center-box">
-          <h2>Correct Guesses: <div class="counter">0</div> </h2>
-          <h2>Incorrect Guesses: <div class="counter">0</div> </h2>
           <button id="reset-button">Start Game!</button>
+          <div><h2>Correct / Incorrect: <div class="counter">0</div>/<div class="counter">0</div></h2></div>
         </div>
       </div>
       <script>
@@ -49,7 +52,7 @@ import SectionHeader from "../components/SectionHeader.astro";
             "I built my own PC",
             "I think that windows 10 has a better UI than MacOS",
             "I like Javascript",
-            "I almost got an internship with Apple, but was happy in hindsight to not have gotten the job",
+            "I almost got an internship with Apple, but was happy in hindsight that I wasn't selected",
           ],
           lies: [
             "I played the UPS guy in my high school's production of Legally Blonde",
@@ -150,6 +153,12 @@ import SectionHeader from "../components/SectionHeader.astro";
 </Layout>
 
 <style>
+  h2 {
+    padding-top: 1rem;
+  }
+  .counter {
+    display: inline;
+  }
   p {
     display: flex;
     align-items: center;
@@ -187,6 +196,7 @@ import SectionHeader from "../components/SectionHeader.astro";
     background-color: #035451;
     color: white;
     font-size: large;
+    margin: 0rem 1rem;
   }
   #reset-button:disabled {
     background-color: grey;
