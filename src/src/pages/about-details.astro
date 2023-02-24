@@ -1,0 +1,82 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
+<Layout title="Jadrian's Portfolio">
+  <main class="flex flex-col justify-center content-center">
+    <SectionHeader title="About" href="/about/" />
+    <div class="flex-0">
+      <p class="instructions resume-container">
+        <a class="resume" href="/Jadrian_s_Resume.pdf" download
+          >&dArr; Download Resume &dArr;</a
+        >
+      </p>
+    </div>
+    <p class="instructions">
+      I'm a fullstack developer who is a self motivated team player. I enjoy
+      learning new tech, but acknowledge that these technologies are just tools
+      in a tool belt, a means to deliver great software products. I love writing
+      tests, reviewing code and testing to ensure my team is always delivering
+      great code. I have experience in many programming languages, which
+      facilitates my ability to adopt new technology quickly by seeing the
+      commonalities between them. I'm no security expert, but I know the basics
+      of keeping a website secure.
+    </p>
+    <p class="instructions">
+      I graduated from the University of Waterloo with a Bachelor of Applied
+      Science in Honours Nanotechnology Engineering. I chose this program
+      because I was interested in chemistry and wanted to apply my learnings to
+      solve problems and improve lives. However, the actual day to day work of
+      being in a lab was not enjoyable for me, so I branched out a bit during my
+      coop placements, and learned that I could build amazing things using
+      software from my own computer. Starting from about halfway through my
+      program, I switched my focus to software, taking as many software courses
+      as the school would let me. I have been self-directing my learning ever
+      since. I believe that this round about path has made me a better
+      professional developer to this day because it forced me to learn how to
+      learn.
+    </p>
+  </main>
+</Layout>
+
+<style>
+  .resume-container {
+    text-align: center;
+  }
+  .resume {
+    text-decoration: none;
+    color: black;
+  }
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    line-height: 1.6;
+    margin: 1rem 0;
+    border: 1px solid rgba(var(--accent), 25%);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.4rem;
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+</style>
