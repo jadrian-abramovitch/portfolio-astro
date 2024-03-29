@@ -8,53 +8,11 @@ const { title, href } = Astro.props;
 const dest = href ? href : "/./";
 ---
 
-<header class="">
-  <div class="flex-0 text-5xl text-gradient arrow-container">
-    <a href={dest}><div class="arrow-draw text-gradient"></div></a>
-  </div>
-  <h1 class="flex-1">
-    <span class="text-gradient text-5xl">{title}</span>
-  </h1>
+<header class="flex flex-row items-center gap-2">
+  <a href={dest}
+    ><i
+      class="fa-regular fa-square-caret-left fa-2xl text-sky-500 hover:text-sky-700"
+    ></i></a
+  >
+  <h1 class="text-5xl text-lime-500">{title}</h1>
 </header>
-
-<style>
-  .arrow-draw {
-    border-top: 12px solid transparent;
-    border-right: 30px solid;
-    border-bottom: 12px solid transparent;
-    color: rgb(3, 84, 81);
-  }
-  .arrow-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  .arrow {
-    border: 2px solid black;
-    font-size: 4rem;
-    margin: 0px;
-  }
-  .text-5xl {
-    font-size: 3rem;
-    line-height: 1.5;
-    display: block;
-    margin-left: 1rem;
-  }
-  .flex-0 {
-    flex: 0;
-  }
-  .flex-1 {
-    flex: 1;
-  }
-  header {
-    display: flex;
-    align-items: center;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-</style>

@@ -6,7 +6,7 @@ export interface Props {
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,28 +14,11 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon-16X16.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script
+      src="https://kit.fontawesome.com/83c95587fe.js"
+      crossorigin="anonymous"></script>
   </head>
   <body>
     <slot />
   </body>
 </html>
-<style is:global>
-  :root {
-    --accent: 3, 84, 81;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      #035451 10%,
-      white 90%
-    );
-  }
-  html {
-    font-family: system-ui, sans-serif;
-    background-color: rgb(3, 84, 81, 0.05);
-    list-style: decimal;
-  }
-  code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-  }
-</style>
