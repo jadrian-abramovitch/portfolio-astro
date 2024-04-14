@@ -5,61 +5,148 @@ import Card from "../components/Card.astro";
 
 <Layout title="Jadrian's Portfolio">
   <main>
-    <!-- <div class="flex-container-1"></div> -->
-    <div class="flex-container-4 m-1rem flex-center">
-      <h1>Hi I'm <span class="text-gradient">Jadrian</span></h1>
-      <div class="instructions-container">
-        <p class="instructions">
-          I'm a <code>fullstack dev</code> who loves working with teams to deliver
-          great software
-        </p>
+    <div class="flex-container-1 flex-center min-w-max">
+      <!-- <div class="flex-container-4 m-1rem flex-center"> -->
+      <div class="grid grid-cols-3 gap-0 place-items-center justify-end">
+        <div id="title-box" class="w-96">
+          <h1>
+            Hi, I'm <code class="text-emerald-600 font-extrabold">Jadrian</code>
+          </h1>
+          <h2 class="text-2xl">
+            I'm a <code class="text-emerald-600 font-extrabold"
+              >fullstack dev</code
+            >
+            who loves working with teams to deliver great software
+          </h2>
+        </div>
+        <div class="w-96 h-full">
+          <canvas id="canvas" class="w-96 h-full"></canvas>
+        </div>
+        <div id="right-box" class="w-96">
+          <ul role="list" class="link-card-grid">
+            <Card
+              href="/about/"
+              title="About Me"
+              body="Learn about me and my quest to be the best"
+              key={0}
+            />
+            <Card
+              href="./projects"
+              title="Projects"
+              body="Learn about the what I've been up to"
+              key={1}
+            />
+            <Card
+              href="./blog"
+              title="Blog"
+              body="Here I write some thoughts about my experience as a dev"
+              key={2}
+            />
+            <Card
+              href="./contact"
+              title="Contact"
+              body="Say hi on LinkedIn! Email works as well, but thats less fun"
+              key={3}
+            />
+          </ul>
+        </div>
       </div>
-      <ul role="list" class="link-card-grid">
-        <Card
-          href="/about/"
-          title="About Me"
-          body="Learn about me and my quest to be the best"
-        />
-        <Card
-          href="./projects"
-          title="Projects"
-          body="Learn about the what I've been up to"
-        />
-        <Card
-          href="./blog"
-          title="Blog"
-          body="Here I write some thoughts about my experience as a dev"
-        />
-        <Card
-          href="./contact"
-          title="Contact"
-          body="Say hi on LinkedIn! Email works as well, but thats less fun"
-        />
-      </ul>
     </div>
-  </main>
-</Layout>
+  </main></Layout
+>
 
+<script>
+  function getCardHeight(index: number) {
+    const rightBoxBounds = document
+      .getElementById("right-box")
+      ?.getBoundingClientRect();
+    const cards = document.querySelectorAll(".link-card");
+    const cardBounds: Array<DOMRect> = [];
+    cards.forEach((card) => cardBounds.push(card.getBoundingClientRect()));
+    if (!rightBoxBounds || !cardBounds.length || !cardBounds[index]) {
+      return 0;
+    }
+    return (
+      rightBoxBounds.height -
+      (rightBoxBounds.bottom - cardBounds[index].bottom) -
+      cardBounds[index].height / 2
+    );
+  }
+  function drawTriangle(
+    ctx: CanvasRenderingContext2D,
+    left: number,
+    right: number,
+    y: number
+  ) {
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(left, y + 10);
+    ctx.lineTo(right, y);
+    ctx.lineTo(left, y - 10);
+    ctx.lineTo(left, y);
+    ctx.fill();
+    ctx.stroke();
+  }
+  function drawFullLine(index: number, color: string, lineWidth: number) {
+    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const canvasBounds = canvas?.getBoundingClientRect();
+    if (!canvasBounds || !ctx) return;
+
+    ctx.fillStyle = color;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0.5 * canvasBounds.height);
+    ctx.lineTo(canvasBounds.width / 2, 0.5 * canvasBounds.height);
+    ctx.lineTo(canvasBounds.width / 2, getCardHeight(index));
+    ctx.lineTo(canvasBounds.width - 25, getCardHeight(index));
+    ctx.stroke();
+    drawTriangle(
+      ctx,
+      canvasBounds.width - 25,
+      canvasBounds.width - 5,
+      getCardHeight(index)
+    );
+  }
+  function drawDefault() {
+    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    const leftBox = document.getElementById("title-box");
+    const rightBox = document.getElementById("right-box");
+    const cards = document.querySelectorAll(".link-card");
+    cards.forEach((card) => {
+      card.addEventListener("focus", focus, true);
+      card.addEventListener("blur", blur, true);
+      card.addEventListener("mouseover", mouseIn);
+      card.addEventListener("mouseout", mouseOut);
+    });
+    if (canvas && leftBox && rightBox && cards.length) {
+      canvas.width = canvas?.offsetWidth; // lines super blurry without this
+      canvas.height = canvas?.offsetHeight;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        return;
+      }
+      cards.forEach((_, index) => drawFullLine(index, "black", 3));
+    }
+  }
+  function focus(e: any) {
+    drawFullLine(e.target.id, "#831843", 10);
+  }
+  function blur() {
+    drawDefault();
+  }
+  function mouseIn(e: any) {
+    drawFullLine(e.target.id, "#831843", 10);
+  }
+  function mouseOut() {
+    drawDefault();
+  }
+  drawDefault();
+</script>
 <style>
-  .flex-center {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-  .m-1rem {
-    margin: 1rem;
-  }
-  body,
-  html {
-    margin: 0px;
-    padding: 0px;
-  }
-  .flex-container-1 {
-    flex: 1 1 0;
-  }
-  .flex-container-4 {
-    flex: 4 4 0;
-  }
   main {
     margin: auto;
     padding: 1.5rem;
@@ -70,43 +157,10 @@ import Card from "../components/Card.astro";
     align-items: center;
     justify-content: center;
   }
-  /* main {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  } */
   h1 {
     font-size: 3rem;
     font-weight: 800;
     margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent));
   }
   .link-card-grid {
     display: grid;
@@ -115,32 +169,5 @@ import Card from "../components/Card.astro";
     padding: 0px;
     margin-top: 1rem;
     margin-bottom: 1rem;
-  }
-  .instructions-container {
-    background-position: 0;
-    height: max-content;
-    /* list-style: none; */
-    display: flex;
-    padding: 0.15rem;
-    background-color: white;
-    background-image: var(--accent-gradient);
-    background-size: 400%;
-    border-radius: 0.5rem;
-    /* background-position: 100%; */
-    transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  }
-
-  .instructions {
-    width: 100%;
-    text-decoration: none;
-    line-height: 1.4;
-    padding: 1rem 1.3rem;
-    border-radius: 0.35rem;
-    color: #111;
-    background-color: white;
-    opacity: 0.8;
-    margin: 0px;
   }
 </style>
