@@ -1,24 +1,29 @@
 ---
 export interface Props {
   title: string;
-  body: string;
+  body?: string;
   href: string;
   key: number;
+  icon?: string;
 }
 
-const { href, title, body, key } = Astro.props;
+const { href, title, body, key, icon } = Astro.props;
 ---
 
 <a id={`${key}`} href={href} class="group link-card focus:outline-none">
   <div
     id={`${key}`}
-    class="group p-2 border-4 bg-emerald-200 border-emerald-500 rounded-xl group-hover:border-pink-900 group-focus:border-pink-900
+    class="group p-2 border-4 w-min-content bg-emerald-200 border-emerald-500 rounded-xl group-hover:border-pink-900 group-focus:border-pink-900
   focus:border-pink-900 shadow-lg"
   >
-    <h2 id={`${key}`} class="text-xl font-bold group-hover:text-slate-900">
-      {title}
+    <h2
+      id={`${key}`}
+      class="text-base md:text-xl font-bold group-hover:text-slate-900 text-center"
+    >
+      {icon && <i id={`${key}`} class={icon} />}
+      {" " + title}
     </h2>
-    <p id={`${key}`} class="text-lg">
+    <p id={`${key}`} class="text-sm md:text-lg">
       {body}
     </p>
   </div>

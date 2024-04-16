@@ -7,45 +7,46 @@ import Card from "../components/Card.astro";
   <main>
     <div class="flex-container-1 flex-center min-w-max">
       <!-- <div class="flex-container-4 m-1rem flex-center"> -->
-      <div class="grid grid-cols-3 gap-0 place-items-center justify-end">
-        <div id="title-box" class="w-96">
-          <h1>
-            Hi, I'm <code class="text-emerald-600 font-extrabold">Jadrian</code>
-          </h1>
-          <h2 class="text-2xl">
-            I'm a <code class="text-emerald-600 font-extrabold"
-              >fullstack dev</code
-            >
-            who loves working with teams to deliver great software
-          </h2>
+      <div
+        class="md:grid md:grid-cols-3 gap-0 place-items-center justify-end w-8/12 m-auto"
+      >
+        <div id="title-box">
+          <div class="max-w-96">
+            <h1 class="block text-wrap">
+              Hi, I'm <code class="text-emerald-600 font-extrabold"
+                >Jadrian</code
+              >
+            </h1>
+            <p class="text-2xl block text-wrap">
+              I'm a <code class="text-emerald-600 font-extrabold block"
+                >fullstack dev</code
+              >
+              who loves working with teams to deliver great software
+            </p>
+          </div>
         </div>
-        <div class="w-96 h-full">
-          <canvas id="canvas" class="w-96 h-full"></canvas>
+        <div class="h-full hidden md:block">
+          <canvas id="canvas" class="h-full"></canvas>
         </div>
-        <div id="right-box" class="w-96">
+        <div id="right-box">
           <ul role="list" class="link-card-grid">
             <Card
               href="/about/"
               title="About Me"
-              body="Learn about me and my quest to be the best"
+              icon="fa-solid fa-address-card"
               key={0}
             />
             <Card
               href="./projects"
               title="Projects"
-              body="Learn about the what I've been up to"
+              icon="fa-solid fa-laptop-code"
               key={1}
             />
-            <Card
-              href="./blog"
-              title="Blog"
-              body="Here I write some thoughts about my experience as a dev"
-              key={2}
-            />
+            <Card href="./blog" title="Blog" icon="fa-solid fa-book" key={2} />
             <Card
               href="./contact"
               title="Contact"
-              body="Say hi on LinkedIn! Email works as well, but thats less fun"
+              icon="fa-regular fa-envelope"
               key={3}
             />
           </ul>
@@ -106,8 +107,8 @@ import Card from "../components/Card.astro";
     ctx.stroke();
     drawTriangle(
       ctx,
-      canvasBounds.width - 25,
-      canvasBounds.width - 5,
+      canvasBounds.width - 35,
+      canvasBounds.width - 15,
       getCardHeight(index)
     );
   }
@@ -142,15 +143,16 @@ import Card from "../components/Card.astro";
     drawFullLine(e.target.id, "#831843", 10);
   }
   function mouseOut() {
+    console.log("mouse out");
     drawDefault();
   }
+  window.addEventListener("resize", mouseOut, true);
   drawDefault();
 </script>
 <style>
   main {
     margin: auto;
     padding: 1.5rem;
-    max-width: 60ch;
     height: 95vh;
     display: flex;
     flex-direction: column;
