@@ -2,6 +2,19 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import About from "../components/About.astro";
+import { library, icon } from "@fortawesome/fontawesome-svg-core";
+import {
+  faEnvelope,
+  faAddressCard,
+  faBook,
+  faLaptopCode,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(faEnvelope, faAddressCard, faBook, faLaptopCode);
+const addressCard = icon({ prefix: "fas", iconName: faAddressCard.iconName });
+const envelope = icon({ prefix: "fas", iconName: faEnvelope.iconName });
+const book = icon({ prefix: "fas", iconName: faBook.iconName });
+const laptop = icon({ prefix: "fas", iconName: faLaptopCode.iconName });
 ---
 
 <Layout title="Jadrian's Portfolio">
@@ -12,23 +25,32 @@ import About from "../components/About.astro";
       <div id="left-box" class="flex justify-end w-full">
         <ul transition:name="menu" role="list" class="grid grid-cols-1 gap-4">
           <Card
-            href="/about/"
+            href="/newAbout/"
             title="About Me"
-            icon="fa-solid fa-address-card"
+            icon="about"
             key={0}
+            transition:name="about"
           />
           <Card
             href="./projects"
             title="Projects"
-            icon="fa-solid fa-laptop-code"
+            icon="projects"
             key={1}
+            transition:name="project"
           />
-          <Card href="./blog" title="Blog" icon="fa-solid fa-book" key={2} />
+          <Card
+            href="./blog"
+            title="Blog"
+            icon="blog"
+            key={2}
+            transition:name="blog"
+          />
           <Card
             href="./contact"
             title="Contact"
-            icon="fa-regular fa-envelope"
+            icon="contact"
             key={3}
+            transition:name="contact"
           />
         </ul>
       </div>
