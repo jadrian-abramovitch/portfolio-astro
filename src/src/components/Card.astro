@@ -5,9 +5,10 @@ export interface Props {
   href: string;
   key: number;
   icon?: "about" | "projects" | "blog" | "contact";
+  isActive?: boolean;
 }
 
-const { href, title, body, key, icon } = Astro.props;
+const { href, title, body, key, icon, isActive } = Astro.props;
 const iconMap = {
   about:
     "M384 48c8.8 0 16 7.2 16 16V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H384zM96 0C60.7 0 32 28.7 32 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zM240 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H208zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zM496 192c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V336z",
@@ -17,13 +18,19 @@ const iconMap = {
   contact:
     "M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z",
 };
+function getClass (icon: string | undefined, isActive: boolean | undefined) {
+  if (isActive) {
+    return `${icon ? 'flex-row' : 'flex-col'} flex items-center justify-center group p-2 border-4 w-min-content bg-emerald-200 border-emerald-500 rounded-xl border-pink-900 border-pink-900 shadow-lg1`;
+  } else {
+    return `${icon ? 'flex-row' : 'flex-col'} flex items-center justify-center group p-2 border-4 w-min-content bg-emerald-200 border-emerald-500 rounded-xl group-hover:border-pink-900 group-focus:border-pink-900 focus:border-pink-900 shadow-lg1`;
+  }
+}
 ---
 
 <a id={`${key}`} href={href} class="group link-card focus:outline-none">
   <div
     id={`${key}`}
-    class="flex items-center justify-center group p-2 border-4 w-min-content bg-emerald-200 border-emerald-500 rounded-xl group-hover:border-pink-900 group-focus:border-pink-900
-  focus:border-pink-900 shadow-lg"
+    class={getClass(icon, isActive)}
   >
     <span
       id={`${key}`}

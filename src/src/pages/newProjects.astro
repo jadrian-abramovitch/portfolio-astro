@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopMenu from "../components/TopMenu.astro";
+import Card from "../components/Card.astro";
+---
+
+<Layout title="Jadrian's Portfolio">
+  <main>
+    <div
+      class="md:grid md:grid-cols-4 gap-0 place-items-center justify-end w-8/12 m-auto"
+    >
+      <div id="left-box" class="flex justify-end w-full">
+        <TopMenu active={1} />
+      </div>
+      <div id="center-box" class="h-full hidden md:block w-full px-2">
+        <canvas id="canvas" class="h-full w-full"></canvas>
+      </div>
+      <div id="right-box" class="flex justify-start w-full">
+        <ul role="list" class="grid grid-cols-1 gap-4">
+          <div class="p-4">
+            <Card
+              href="https://github.com/jadrian-abramovitch/FindMeATeam"
+              title="Find Me A Team!"
+              body="Find Me A Team allows users to connect with other players from their favorite games. This site is able to facilitate these human connections without having all features 100% complete. Currently the only game supported is League of Legends, but will be expanded to other games such as CS:GO, Overwatch, Dota etc."
+              key={0}
+            />
+          </div>
+          <div class="p-4">
+            <Card
+              href="https://github.com/jadrian-abramovitch/NHL-Scraper"
+              title="NHL roster building investigation"
+              body="A web scraper for NHL.com to analyze the relationship between talent distribution and team success."
+              key={1}
+            />
+          </div>
+          <div class="p-4">
+            <Card
+              href="https://github.com/jadrian-abramovitch/Connect4"
+              title="Connect 4 with AI"
+              body="A fully functional Connect 4 game versus an AI which uses the minimax algorithm. This game is built using python, leveraging the Pygame module for the visuals. The backend logic uses a 2d - numpy array to represent the board state."
+              key={2}
+            />
+          </div>
+        </ul>
+      </div>
+    </div>
+  </main></Layout
+>
+
+<script>
+  import UseDrawLines from "../util/UseDrawLines";
+  UseDrawLines();
+</script>
+<style>
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+</style>

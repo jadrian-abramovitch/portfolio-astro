@@ -1,32 +1,42 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TopMenu from "../components/TopMenu.astro";
+import Card from "../components/Card.astro";
+const posts = await Astro.glob("./posts/*.md");
 ---
 
 <Layout title="Jadrian's Portfolio">
   <main>
     <div
-      class="md:grid md:grid-cols-3 gap-0 place-items-center justify-end w-8/12 m-auto"
+      class="md:grid md:grid-cols-4 gap-0 place-items-center justify-end w-8/12 m-auto"
     >
-      <div id="left-box" class="w-full">
-        <div>
-          <h1 class="block text-wrap text-end">
-            Hi, I'm <code class="text-emerald-600 font-extrabold">Jadrian</code>
-          </h1>
-          <p class="text-2xl block text-wrap text-end">
-            I'm a <code
-              class="text-emerald-600 font-extrabold tracking-[-0.05em]"
-              >fullstack-developer</code
-            >
-            who loves working with teams to deliver great software
-          </p>
-        </div>
+      <div id="left-box" class="flex justify-end w-full">
+        <TopMenu active={2} />
       </div>
       <div id="center-box" class="h-full hidden md:block w-full px-2">
         <canvas id="canvas" class="h-full w-full"></canvas>
       </div>
       <div id="right-box" class="flex justify-start w-full">
-        <TopMenu />
+        <ul role="list" class="grid grid-cols-1 gap-4">
+          <Layout title="Blog Posts">
+            <main>
+              <ul role="list" class="link-card-grid">
+                {
+                  posts.map((post, idx) => (
+                    <div class="p-4">
+                      <Card
+                        href={post.url ? post.url : "./blog"}
+                        title={post.frontmatter.title}
+                        body={post.frontmatter.subTitle}
+                        key={idx}
+                      />
+                    </div>
+                  ))
+                }
+              </ul>
+            </main>
+          </Layout>
+        </ul>
       </div>
     </div>
   </main></Layout
