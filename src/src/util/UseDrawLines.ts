@@ -99,6 +99,16 @@ function UseDrawLines() {
         return;
       }
       cards.forEach((_, index) => drawFullLine(index, "black", 3));
+
+      const secondaryNavClassName = document.getElementById(
+        "secondary-menu-list"
+      )?.className;
+      const secondaryNavActive = Number(
+        secondaryNavClassName?.split("active:").pop()
+      );
+      if (!isNaN(secondaryNavActive)) {
+        drawFullLine(secondaryNavActive, "#831843", 10);
+      }
     }
   }
   function focus(e: any) {

@@ -1,8 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TopMenu from "../components/TopMenu.astro";
-import Card from "../components/Card.astro";
-const posts = await Astro.glob("./posts/*.md");
+import BlogPosts from "../components/BlogPosts.astro";
 ---
 
 <Layout title="Jadrian's Portfolio">
@@ -10,63 +9,44 @@ const posts = await Astro.glob("./posts/*.md");
     <div
       class="md:grid md:grid-cols-4 gap-0 place-items-center justify-end w-8/12 m-auto"
     >
-      <div id="left-box" class="flex justify-end w-full">
+      <div id="left-box" class="flex justify-end w-full max-h-[500px]">
         <TopMenu active={2} />
       </div>
       <div id="center-box" class="h-full hidden md:block w-full px-2">
         <canvas id="canvas" class="h-full w-full"></canvas>
       </div>
-      <div id="right-box" class="flex justify-start w-full">
-        <ul role="list" class="grid grid-cols-1 gap-4">
-          <Layout title="Blog Posts">
-            <main>
-              <ul role="list" class="link-card-grid">
-                {
-                  posts.map((post, idx) => (
-                    <div class="p-4">
-                      <Card
-                        href={post.url ? post.url : "./blog"}
-                        title={post.frontmatter.title}
-                        body={post.frontmatter.subTitle}
-                        key={idx}
-                      />
-                    </div>
-                  ))
-                }
-              </ul>
-            </main>
-          </Layout>
-        </ul>
+      <div id="right-box" class="flex justify-start w-full h-full">
+        <BlogPosts />
       </div>
     </div>
+
+    <script>
+      import UseDrawLines from "../util/UseDrawLines";
+      UseDrawLines();
+    </script>
+    <style>
+      main {
+        margin: auto;
+        padding: 1.5rem;
+        height: 95vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin: 0;
+      }
+      .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+    </style>
   </main></Layout
 >
-
-<script>
-  import UseDrawLines from "../util/UseDrawLines";
-  UseDrawLines();
-</script>
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    height: 95vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-</style>

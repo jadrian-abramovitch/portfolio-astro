@@ -6,6 +6,7 @@ export interface Props {
   key: number;
   icon?: "about" | "projects" | "blog" | "contact";
   isActive?: boolean;
+  isSubMenu?: boolean;
 }
 
 const { href, title, body, key, icon, isActive } = Astro.props;
@@ -41,7 +42,7 @@ function getClass (icon: string | undefined, isActive: boolean | undefined) {
     {
       icon && (
       <svg
-        class="inline-block w-20 h-12"
+        class={`inline-block w-20 h-12`}
         id={`${key}`}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"

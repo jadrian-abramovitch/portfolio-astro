@@ -1,18 +1,11 @@
 ---
 export interface Props {
   title: string;
-  href?: string;
 }
 
-const { title, href } = Astro.props;
-const dest = href ? href : "/./";
+const { title } = Astro.props;
 ---
 
-<header class="flex flex-row items-center gap-2">
-  <a href={dest}
-    ><i
-      class="fa-regular fa-square-caret-left fa-2xl text-sky-500 hover:text-sky-700"
-    ></i></a
-  >
-  <h1 class="text-5xl text-lime-500">{title}</h1>
+<header class="w-full text-center">
+  <h1 class="text-5xl text-emerald-600 text-center">{title}</h1>
 </header>
