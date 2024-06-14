@@ -18,27 +18,47 @@ import SectionHeader from "../components/SectionHeader.astro";
         <ul role="list" class="link-card-grid">
           <li>
             <p class="instructions lie-card">
-              <img src="/question-mark.png" alt="Question Mark" width="64" height="64">
+              <img
+                src="/question-mark.png"
+                alt="Question Mark"
+                width="64"
+                height="64"
+              />
             </p>
             <h2 class="card-title">Statement #1</h2>
           </li>
           <li>
             <p class="instructions lie-card">
-              <img src="/question-mark.png" alt="Question Mark" width="64" height="64">
+              <img
+                src="/question-mark.png"
+                alt="Question Mark"
+                width="64"
+                height="64"
+              />
             </p>
             <h2 class="card-title">Statement #2</h2>
           </li>
           <li>
             <p class="instructions lie-card">
-              <img src="/question-mark.png" alt="Question Mark" width="64" height="64">
+              <img
+                src="/question-mark.png"
+                alt="Question Mark"
+                width="64"
+                height="64"
+              />
             </p>
             <h2 class="card-title">Statement #3</h2>
           </li>
         </ul>
-	<div class="comment-box"></div>
+        <div class="comment-box"></div>
         <div class="center-box">
           <button id="reset-button">Start Game!</button>
-          <div><h2><div class="counter green">0</div><div class="green"> Correct</div> | <div class="counter red">0</div><div class="red"> Incorrect</div></h2></div>
+          <div>
+            <h2>
+              <div class="counter green">0</div><div class="green">Correct</div>
+              | <div class="counter red">0</div><div class="red">Incorrect</div>
+            </h2>
+          </div>
         </div>
       </div>
       <script>
@@ -65,7 +85,9 @@ import SectionHeader from "../components/SectionHeader.astro";
           "lie-card"
         ) as HTMLCollectionOf<HTMLButtonElement>;
 
-        const cardTitles = document.getElementsByClassName("card-title") as HTMLCollectionOf<HTMLElement>;
+        const cardTitles = document.getElementsByClassName(
+          "card-title"
+        ) as HTMLCollectionOf<HTMLElement>;
         // main game 'loop'
         let lieIndex = -1;
         const resetBoard = () => {
@@ -93,7 +115,9 @@ import SectionHeader from "../components/SectionHeader.astro";
             cardTitles[i].style.color = "black";
           }
           for (var i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener("click", handleClick(i), {once: true});
+            buttons[i].addEventListener("click", handleClick(i), {
+              once: true,
+            });
           }
           if (gameData.lies.length === 0) {
             const resetButton = document.getElementById(
@@ -132,7 +156,9 @@ import SectionHeader from "../components/SectionHeader.astro";
           if (!isCorrect) incrementCounter(1);
         }
         function incrementCounter(counterId: number) {
-          const counter = document.getElementsByClassName("counter").item(counterId) as HTMLElement;
+          const counter = document
+            .getElementsByClassName("counter")
+            .item(counterId) as HTMLElement;
           const currentValue = Number(counter.innerHTML);
           counter.innerHTML = String(currentValue + 1);
         }

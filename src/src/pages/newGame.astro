@@ -1,0 +1,242 @@
+---
+import Layout from "../layouts/Layout.astro";
+import About from "../components/About.astro";
+import TopMenu from "../components/TopMenu.astro";
+---
+
+<Layout title="Jadrian's Portfolio">
+  <main class="p-0">
+    <div
+      class="md:grid md:grid-cols-5 gap-0 place-items-center justify-end w-full m-auto"
+    >
+      <div class="flex w-full h-full col-span-2 max-h-[336px]">
+        <div id="left-box" class="flex justify-end w-full">
+          <TopMenu active={0} />
+        </div>
+        <div id="center-box" class="h-full hidden md:block w-full px-2">
+          <canvas id="canvas" class="h-full w-full"></canvas>
+        </div>
+        <div id="right-box" class="flex justify-start w-full">
+          <About active={0} />
+        </div>
+      </div>
+      <div class="col-span-3 h-full">
+        <div class="flex flex-col h-full">
+          <div class="flex-1">
+            <div class="instructions-container">
+              <p class="instructions">
+                I'll show you 3 statements, you guess which one is the <code
+                  >LIE</code
+                > Let me know how you did!
+              </p>
+            </div>
+            <ul role="list" class="link-card-grid h-full">
+              <li>
+                <p class="instructions lie-card">
+                  <img
+                    src="/question-mark.png"
+                    alt="Question Mark"
+                    width="64"
+                    height="64"
+                  />
+                </p>
+                <h2 class="card-title">Statement #1</h2>
+              </li>
+              <li class="h-full">
+                <p class="instructions lie-card h-full border-4">
+                  <img
+                    src="/question-mark.png"
+                    alt="Question Mark"
+                    width="64"
+                    height="64"
+                  />
+                </p>
+                <h2 class="card-title">Statement #2</h2>
+              </li>
+              <li>
+                <p class="instructions lie-card border-4">
+                  <img
+                    src="/question-mark.png"
+                    alt="Question Mark"
+                    width="64"
+                    height="64"
+                  />
+                </p>
+                <h2 class="card-title">Statement #3</h2>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-0">
+            <div class="comment-box"></div>
+            <div class="center-box flex w-full justify-center items-center">
+              <button
+                id="reset-button"
+                class="bg-emerald-200 border-4 rounded-lg border-emerald-500 p-2"
+                >Start Game!</button
+              >
+              <div class="inline">
+                <h2 class="inline">
+                  <div class="inline text-emerald-500 text-2xl">0</div><div
+                    class="inline text-emerald-500 text-2xl"
+                  >
+                    Correct
+                  </div> | <div class="inline text-red-500 text-2xl">0</div><div
+                    class="inline text-red-500 text-2xl"
+                  >
+                    Incorrect
+                  </div>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          // initial data
+          const gameData = {
+            truths: [
+              "I was born on a Friday the 13th (Spooky)",
+              "I played clarinet in high school band",
+              "I went to the University of Waterloo for NanoTechnology Engineering",
+              "I was a team leader at McDonald's in high school",
+              "I built my own PC",
+              "I think that windows 10 has a better UI than MacOS",
+              "I like Javascript",
+              "I almost got an internship with Apple, but was happy in hindsight that I wasn't selected",
+            ],
+            lies: [
+              "I played the UPS guy in my high school's production of Legally Blonde",
+              "I still use Windows 7 daily",
+              "Internet explorer is a great browser",
+              "I have been to Italy",
+            ],
+          };
+          const buttons = document.getElementsByClassName(
+            "lie-card"
+          ) as HTMLCollectionOf<HTMLButtonElement>;
+
+          const cardTitles = document.getElementsByClassName(
+            "card-title"
+          ) as HTMLCollectionOf<HTMLElement>;
+          // main game 'loop'
+          let lieIndex = -1;
+          const resetBoard = () => {
+            const initialStatements = Array(3)
+              .fill(1)
+              .map((n, i) => i);
+            let shuffled = initialStatements
+              .map((value) => ({ value, sort: Math.random() }))
+              .sort((a, b) => a.sort - b.sort)
+              .map(({ value }) => value);
+            const cardData = shuffled.map((value, index) => {
+              if (value >= 2) {
+                lieIndex = index;
+                return getLie();
+              } else {
+                return getTruth();
+              }
+            });
+            for (let i = 0; i < buttons.length; i++) {
+              buttons[i].style.backgroundColor = "";
+              buttons[i].innerHTML = cardData[i];
+              buttons[i].style.border = "1px solid rgba(var(--accent), 25%)";
+              buttons[i].style.color = "black";
+              cardTitles[i].innerHTML = `Statement #${i + 1}`;
+              cardTitles[i].style.color = "black";
+            }
+            for (var i = 0; i < buttons.length; i++) {
+              buttons[i].addEventListener("click", handleClick(i), {
+                once: true,
+              });
+            }
+            if (gameData.lies.length === 0) {
+              const resetButton = document.getElementById(
+                "reset-button"
+              ) as HTMLButtonElement;
+              resetButton!.disabled = true;
+            }
+            const resetButton = document.getElementById(
+              "reset-button"
+            ) as HTMLButtonElement;
+            resetButton!.innerHTML = "Next Round!";
+          };
+
+          // Setup click listeners
+          const handleClick = (id: number) => () => {
+            if (lieIndex < 0) return;
+            if (id !== lieIndex) {
+              //incorrect
+              setCardState(id, false);
+            } else if (id === lieIndex) {
+              //correct
+              setCardState(id, true);
+            }
+          };
+          const resetButton = document.getElementById("reset-button");
+          resetButton?.addEventListener("click", resetBoard);
+
+          // Helper functions
+          function setCardState(id: number, isCorrect: boolean) {
+            const newColor = isCorrect ? "#035451" : "#e32121";
+            buttons[id].style.border = "8px solid " + newColor;
+            buttons[id].style.color = newColor;
+            cardTitles[id].innerHTML = isCorrect ? "Correct!" : "Incorrect";
+            cardTitles[id].style.color = newColor;
+            if (isCorrect) incrementCounter(0);
+            if (!isCorrect) incrementCounter(1);
+          }
+          function incrementCounter(counterId: number) {
+            const counter = document
+              .getElementsByClassName("counter")
+              .item(counterId) as HTMLElement;
+            const currentValue = Number(counter.innerHTML);
+            counter.innerHTML = String(currentValue + 1);
+          }
+          function getRandomNumber(num: number) {
+            return Math.floor(Math.random() * num);
+          }
+          function getLie() {
+            return gameData.lies.splice(
+              getRandomNumber(gameData.lies.length),
+              1
+            )[0];
+          }
+          function getTruth() {
+            return gameData.truths.splice(
+              getRandomNumber(gameData.truths.length),
+              1
+            )[0];
+          }
+        </script>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import UseDrawLines from "../util/UseDrawLines";
+  UseDrawLines();
+</script>
+<style>
+  main {
+    margin: auto;
+    /* padding: 1.5rem; */
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12ch, 1fr));
+    gap: 1rem;
+    padding: 0px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+</style>
