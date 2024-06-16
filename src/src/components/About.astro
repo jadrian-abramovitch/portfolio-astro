@@ -1,40 +1,39 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-import SectionHeader from "../components/SectionHeader.astro";
+
+export interface Props {
+  active?: number;
+}
+const { active } = Astro.props;
 ---
 
-<Layout title="Jadrian's Portfolio">
-  <main>
-    <div class="container">
-      <SectionHeader title="About" />
-      <div class="flex-0">
-        <ul role="list" class="link-card-grid">
-          <Card
-            href="/about-details"
-            title="About Me"
-            body="A little bit about who I am as a developer and team player"
-          />
-          <Card
-            href="/game/"
-            title="Get to Know Me Game"
-            body="For those who don't feel like reading"
-          />
-          <Card
-            href="/Jadrian_s_Resume.pdf"
-            title="Resume"
-            body="Guaranteed fun or your money back!"
-          />
-          <Card
-            href="/contact/"
-            title="Contact"
-            body="Feel free to reach out!"
-          />
-        </ul>
-      </div>
-    </div>
-  </main>
-</Layout>
+<ul
+  id="secondary-menu-list"
+  role="list"
+  class=`grid grid-cols-1 gap-4 active:${active}`
+>
+  <Card
+    href="/AboutDetails"
+    title="About Me"
+    body="A little bit about who I am as a developer and team player"
+    key={0}
+    isActive={active === 0}
+  />
+  <Card
+    href="/Game"
+    title="Get to Know Me Game"
+    body="For those who don't feel like reading"
+    key={1}
+    isActive={active === 1}
+  />
+  <Card
+    href="/Jadrian_s_Resume.pdf"
+    title="Resume"
+    body="Guaranteed fun or your money back!"
+    key={2}
+    isActive={active === 2}
+  />
+</ul>
 
 <style>
   main {

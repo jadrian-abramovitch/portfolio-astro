@@ -13,7 +13,7 @@ I'm probably forgetting a lot of people (sorry!) because I've gotten a lot of he
 Software Development is a Human-First Discipline
 ```
 
-This means that while we get paid to translate ideas into code, we can't deliver high quality software without being able to communicate and coordinate. Even interactions with the computer directly are translated through layers of human abstraction. We (thankfully) don't write in assembly, so we are interacting with an abstracting that a human designed
+This means that while we get paid to translate ideas into code, we can't deliver high quality software without being able to communicate and coordinate. Even interactions with the computer directly are translated through layers of human abstraction. We (thankfully) don't write in assembly, so we are interacting with an abstraction that a human designed.
 
 Seeing software as a human-first discipline means trying to understand the intention behind the system you are working with. It means treating everyone with respect so that other developers feel emotionally safe enough to speak up in the group meeting. It means showing the developer who broke the application grace as you work through what happened alongside them to fix and learn. Being the best software developer means being the best teammate, despite what the popular sitcoms might have you believe.
 

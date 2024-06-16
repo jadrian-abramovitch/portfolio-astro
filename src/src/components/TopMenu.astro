@@ -1,0 +1,48 @@
+---
+import Card from "../components/Card.astro";
+
+export interface Props {
+  active?: number;
+}
+const { active } = Astro.props;
+---
+
+<ul
+  id="menu-list"
+  transition:name="menu"
+  role="list"
+  class=`grid grid-cols-1 gap-4 active:${active}`
+>
+  <Card
+    href="/About"
+    title="About Me"
+    icon="about"
+    key={0}
+    transition:name="about"
+    isActive={active === 0}
+  />
+  <Card
+    href="/Projects"
+    title="Projects"
+    icon="projects"
+    key={1}
+    transition:name="project"
+    isActive={active === 1}
+  />
+  <Card
+    href="/Blog"
+    title="Blog"
+    icon="blog"
+    key={2}
+    transition:name="blog"
+    isActive={active === 2}
+  />
+  <Card
+    href="/Contact"
+    title="Contact"
+    icon="contact"
+    key={3}
+    transition:name="contact"
+    isActive={active === 3}
+  />
+</ul>

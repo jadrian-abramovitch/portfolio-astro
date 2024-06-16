@@ -1,52 +1,58 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SectionHeader from "../components/SectionHeader.astro";
+import Contact from "../components/Contact.astro";
+import TopMenu from "../components/TopMenu.astro";
 ---
 
 <Layout title="Jadrian's Portfolio">
-  <main class="flex flex-col justify-center content-center">
-    <SectionHeader href="/contact/" title="Contact" />
-    <div class="flex-0">
-      <p class="instructions">
-        So I have a confession. I've never actually used smoke signals before.
-        If you could teach me though that would be great, I could use some help
-        with a few fire based promises I made.
-      </p>
+  <main class="p-0">
+    <div
+      class="md:grid md:grid-cols-5 gap-0 place-items-center justify-end w-full m-auto"
+    >
+      <div class="flex w-full h-full col-span-2">
+        <!-- <div id="left-box" class="flex justify-end w-full">
+          <TopMenu active={3} />
+        </div>       -->
+        <div id="left-box" class="flex justify-end w-full h-max my-auto">
+          <TopMenu active={3} />
+        </div>
+        <div id="center-box" class="h-full hidden md:block w-full px-2">
+          <canvas id="canvas" class="h-full w-full"></canvas>
+        </div>
+        <div id="right-box" class="flex justify-start w-full">
+          <Contact active={3} />
+        </div>
+      </div>
+      <div class="m-24 col-span-3">
+        <div class="flex-0">
+          <p class="instructions">
+            So I have a confession. I've never actually used smoke signals
+            before. If you could teach me though that would be great, I could
+            use some help with a few fire based promises I made.
+          </p>
+        </div>
+      </div>
     </div>
   </main>
-</Layout>
 
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-    height: 100vh;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
-  }
-</style>
+  <script>
+    import UseDrawLines from "../util/UseDrawLines";
+    UseDrawLines();
+  </script>
+  <style>
+    main {
+      margin: auto;
+      /* padding: 1.5rem; */
+      height: 95vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 0;
+    }
+  </style>
+</Layout>

@@ -1,36 +1,53 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
+import TopMenu from "../components/TopMenu.astro";
+import BlogPosts from "../components/BlogPosts.astro";
 const { frontmatter } = Astro.props;
 ---
 
 <Layout title="Blog">
-  <main>
-    <div class="container">
-      <SectionHeader title={frontmatter.title} href={"/blog/"} />
-      <body>
-        <div class="instructions">
+  <main class="p-0 flex">
+    <div
+      class="md:grid md:grid-cols-5 gap-0 place-items-center justify-end w-full m-auto"
+    >
+      <div class="flex w-full h-full col-span-2 max-h-[336px]">
+        <div id="left-box" class="flex justify-end w-full">
+          <TopMenu active={2} />
+        </div>
+        <div id="center-box" class="h-full hidden md:block w-full px-2">
+          <canvas id="canvas" class="h-full w-full"></canvas>
+        </div>
+        <div id="right-box" class="flex justify-start w-full">
+          <BlogPosts active={0} />
+        </div>
+      </div>
+      <div class="mx-24 col-span-3">
+        <div class="container">
+          <SectionHeader title={frontmatter.title} />
           <slot />
         </div>
-      </body>
+      </div>
     </div>
   </main>
-</Layout>
 
-<style>
-  main {
-    margin: auto;
-    max-width: 90vw;
-  }
-  .container {
-    flex: 1;
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 0rem 1rem;
-    border-radius: 0.4rem;
-  }
-</style>
+  <script>
+    import UseDrawLines from "../util/UseDrawLines";
+    UseDrawLines();
+  </script>
+
+  <style>
+    main {
+      /* margin: auto; */
+      /* padding: 1.5rem; */
+      height: 95vh;
+      /* display: flex; */
+      /* flex-direction: column; */
+      /* align-items: center; */
+      /* justify-content: center; */
+    }
+    p {
+      font-size: 40px;
+    }
+  </style>
+</Layout>

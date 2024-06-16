@@ -1,0 +1,26 @@
+---
+import Card from "../components/Card.astro";
+const posts = await Astro.glob("../pages/posts/*.md");
+const url = Astro.url.toString();
+const active = Number(url.split("post").pop()) - 1; //1 based index :/
+export interface props {
+  isSubMenu?: boolean;
+}
+---
+
+<ul
+  id="secondary-menu-list"
+  role="list"
+  class=`active:${active} flex flex-col justify-center gap-4`
+>
+  {
+    posts.map((post, idx) => (
+      <Card
+        href={post.url ? post.url : "./blog"}
+        title={post.frontmatter.title}
+        key={idx}
+        isActive={idx === active}
+      />
+    ))
+  }
+</ul>
