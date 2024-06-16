@@ -17,7 +17,7 @@ import TopMenu from "../components/TopMenu.astro";
           <canvas id="canvas" class="h-full w-full"></canvas>
         </div>
         <div id="right-box" class="flex justify-start w-full">
-          <About active={0} />
+          <About active={1} />
         </div>
       </div>
       <div class="col-span-3 h-full">
@@ -30,39 +30,51 @@ import TopMenu from "../components/TopMenu.astro";
                 > Let me know how you did!
               </p>
             </div>
-            <ul role="list" class="link-card-grid h-full">
-              <li>
-                <p class="instructions lie-card">
-                  <img
-                    src="/question-mark.png"
-                    alt="Question Mark"
-                    width="64"
-                    height="64"
-                  />
-                </p>
-                <h2 class="card-title">Statement #1</h2>
+            <ul role="list" class="link-card-grid h-5/6">
+              <li class="h-full">
+                <div
+                  class="instructions lie-card h-full border-2 border-black flex flex flex-col justify-between items-center rounded-md p-2"
+                >
+                  <div class="card-contents m-auto">
+                    <img
+                      src="/question-mark.png"
+                      alt="Question Mark"
+                      width="64"
+                      height="64"
+                    />
+                  </div>
+                  <span class="card-title"> Statement #1</span>
+                </div>
               </li>
               <li class="h-full">
-                <p class="instructions lie-card h-full border-4">
-                  <img
-                    src="/question-mark.png"
-                    alt="Question Mark"
-                    width="64"
-                    height="64"
-                  />
-                </p>
-                <h2 class="card-title">Statement #2</h2>
+                <div
+                  class="instructions lie-card h-full border-2 border-black flex flex-col justify-between items-center rounded-md p-2"
+                >
+                  <div class="card-contents m-auto">
+                    <img
+                      src="/question-mark.png"
+                      alt="Question Mark"
+                      width="64"
+                      height="64"
+                    />
+                  </div>
+                  <span class="card-title"> Statement #2</span>
+                </div>
               </li>
-              <li>
-                <p class="instructions lie-card border-4">
-                  <img
-                    src="/question-mark.png"
-                    alt="Question Mark"
-                    width="64"
-                    height="64"
-                  />
-                </p>
-                <h2 class="card-title">Statement #3</h2>
+              <li class="h-full">
+                <div
+                  class="instructions lie-card h-full border-2 border-black flex flex flex-col justify-between items-center rounded-md p-2"
+                >
+                  <div class="card-contents m-auto">
+                    <img
+                      src="/question-mark.png"
+                      alt="Question Mark"
+                      width="64"
+                      height="64"
+                    />
+                  </div>
+                  <span class="card-title"> Statement #3</span>
+                </div>
               </li>
             </ul>
           </div>
@@ -76,13 +88,13 @@ import TopMenu from "../components/TopMenu.astro";
               >
               <div class="inline">
                 <h2 class="inline">
-                  <div class="inline text-emerald-500 text-2xl">0</div><div
-                    class="inline text-emerald-500 text-2xl"
-                  >
+                  <div class="counter inline text-emerald-500 text-2xl">
+                    0
+                  </div><div class="inline text-emerald-500 text-2xl">
                     Correct
-                  </div> | <div class="inline text-red-500 text-2xl">0</div><div
-                    class="inline text-red-500 text-2xl"
-                  >
+                  </div> | <div class="counter inline text-red-500 text-2xl">
+                    0
+                  </div><div class="inline text-red-500 text-2xl">
                     Incorrect
                   </div>
                 </h2>
@@ -101,16 +113,20 @@ import TopMenu from "../components/TopMenu.astro";
               "I built my own PC",
               "I think that windows 10 has a better UI than MacOS",
               "I like Javascript",
-              "I almost got an internship with Apple, but was happy in hindsight that I wasn't selected",
+              "I have been to Italy",
             ],
             lies: [
               "I played the UPS guy in my high school's production of Legally Blonde",
               "I still use Windows 7 daily",
-              "Internet explorer is a great browser",
-              "I have been to Italy",
+              "I have been to Vancouver",
+              "I ran a half marathon",
             ],
           };
           const buttons = document.getElementsByClassName(
+            "card-contents"
+          ) as HTMLCollectionOf<HTMLButtonElement>;
+
+          const cards = document.getElementsByClassName(
             "lie-card"
           ) as HTMLCollectionOf<HTMLButtonElement>;
 
@@ -136,28 +152,29 @@ import TopMenu from "../components/TopMenu.astro";
               }
             });
             for (let i = 0; i < buttons.length; i++) {
-              buttons[i].style.backgroundColor = "";
+              // cards[i].class = defaultCardClass;
               buttons[i].innerHTML = cardData[i];
-              buttons[i].style.border = "1px solid rgba(var(--accent), 25%)";
+              cards[i].style.border = "2px solid black";
               buttons[i].style.color = "black";
               cardTitles[i].innerHTML = `Statement #${i + 1}`;
               cardTitles[i].style.color = "black";
             }
-            for (var i = 0; i < buttons.length; i++) {
-              buttons[i].addEventListener("click", handleClick(i), {
+            for (var i = 0; i < cards.length; i++) {
+              cards[i].addEventListener("click", handleClick(i), {
                 once: true,
               });
-            }
-            if (gameData.lies.length === 0) {
-              const resetButton = document.getElementById(
-                "reset-button"
-              ) as HTMLButtonElement;
-              resetButton!.disabled = true;
             }
             const resetButton = document.getElementById(
               "reset-button"
             ) as HTMLButtonElement;
-            resetButton!.innerHTML = "Next Round!";
+            if (gameData.lies.length === 0) {
+              resetButton.disabled = true;
+              resetButton.style.backgroundColor = "gray";
+              resetButton.style.border = "2px solid black";
+              resetButton.style.pointerEvents = "none";
+            } else {
+              resetButton!.innerHTML = "Next Round!";
+            }
           };
 
           // Setup click listeners
@@ -177,8 +194,8 @@ import TopMenu from "../components/TopMenu.astro";
           // Helper functions
           function setCardState(id: number, isCorrect: boolean) {
             const newColor = isCorrect ? "#035451" : "#e32121";
-            buttons[id].style.border = "8px solid " + newColor;
-            buttons[id].style.color = newColor;
+            cards[id].style.border = "8px solid " + newColor;
+            cards[id].style.color = newColor;
             cardTitles[id].innerHTML = isCorrect ? "Correct!" : "Incorrect";
             cardTitles[id].style.color = newColor;
             if (isCorrect) incrementCounter(0);
