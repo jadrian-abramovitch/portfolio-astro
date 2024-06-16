@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import About from "../components/About.astro";
 import TopMenu from "../components/TopMenu.astro";
 import Card from "../components/Card.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout title="Jadrian's Portfolio">
@@ -16,34 +17,7 @@ import Card from "../components/Card.astro";
       <div id="center-box" class="h-full hidden md:block w-full px-2">
         <canvas id="canvas" class="h-full w-full"></canvas>
       </div>
-      <div id="right-box" class="flex justify-start w-full">
-        <ul role="list" class="grid grid-cols-1 gap-4">
-          <Card
-            href="https://www.linkedin.com/in/jadrian-abramovitch-62bba5180"
-            title="LinkedIn"
-            body="Come say hello on LinkedIn"
-            key={0}
-          />
-          <Card
-            href="mailto:jmabramo@uwaterloo.ca"
-            title="Email"
-            body="For those who are too shy for (or don't enjoy) LinkedIn"
-            key={1}
-          />
-          <Card
-            href="https://github.com/jadrian-abramovitch/"
-            title="GitHub"
-            body="Look at some code I wrote"
-            key={2}
-          />
-          <Card
-            href="/smoke-signal/"
-            title="Smoke Signals"
-            body="Tried and true, just make sure to check the weather first"
-            key={3}
-          />
-        </ul>
-      </div>
+      <div id="right-box" class="flex justify-start w-full"><Contact /></div>
     </div>
   </main></Layout
 >
