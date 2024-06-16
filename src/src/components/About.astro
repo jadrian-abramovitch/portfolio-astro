@@ -7,21 +7,20 @@ export interface Props {
 const { active } = Astro.props;
 ---
 
-<!-- <Layout title="Jadrian's Portfolio"> --><!-- <main> --><!-- <div class="container"> --><!-- <SectionHeader title="About" /> -->
 <ul
   id="secondary-menu-list"
   role="list"
   class=`grid grid-cols-1 gap-4 active:${active}`
 >
   <Card
-    href="/newAboutDetails"
+    href="/AboutDetails"
     title="About Me"
     body="A little bit about who I am as a developer and team player"
     key={0}
     isActive={active === 0}
   />
   <Card
-    href="/newGame"
+    href="/Game"
     title="Get to Know Me Game"
     body="For those who don't feel like reading"
     key={1}
@@ -35,10 +34,6 @@ const { active } = Astro.props;
     isActive={active === 2}
   />
 </ul>
-<!-- <Card href="/contact/" title="Contact" body="Feel free to reach out!" key={3} /> -->
-<!-- </div> -->
-<!-- </main> -->
-<!-- </Layout> -->
 
 <style>
   main {

@@ -14,7 +14,7 @@ const { active } = Astro.props;
   class=`grid grid-cols-1 gap-4 active:${active}`
 >
   <Card
-    href="/newAbout"
+    href="/About"
     title="About Me"
     icon="about"
     key={0}
@@ -22,7 +22,7 @@ const { active } = Astro.props;
     isActive={active === 0}
   />
   <Card
-    href="/newProjects"
+    href="/Projects"
     title="Projects"
     icon="projects"
     key={1}
@@ -30,7 +30,7 @@ const { active } = Astro.props;
     isActive={active === 1}
   />
   <Card
-    href="/newBlog"
+    href="/Blog"
     title="Blog"
     icon="blog"
     key={2}
@@ -38,7 +38,7 @@ const { active } = Astro.props;
     isActive={active === 2}
   />
   <Card
-    href="/newContact"
+    href="/Contact"
     title="Contact"
     icon="contact"
     key={3}
